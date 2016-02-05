@@ -6,13 +6,13 @@ import om.term.TermColor;
     Terminal output colorizing.
 
     Usage:
-        Sys.print( TermColorTool.red('abc') );
-        Sys.print( 'abc'.red() );
+        Sys.println( TermColorTool.red('abc') );
+        Sys.println( 'abc'.red() );
 */
 class TermColorTool {
 
     /**
-        Wraps givent string with color definitions.
+        Wraps given string with color definitions.
     */
     public static function color( str : String, color : TermColor ) : String {
         var buf = new StringBuf();
