@@ -1,5 +1,7 @@
 package om.term;
 
+import sys.FileSystem;
+
 class Completion {
 
     public static inline function writeOpts( words : Array<String> ) {
@@ -13,6 +15,20 @@ class Completion {
         Sys.stdout().writeString( s );
         #end
 	}
+
+    public static function writeFileSystemOpts( ?path : String ) : Array<String> {
+        if( path == null ) path = Sys.getCwd();
+        var opts = createFileSystemOpts( path );
+        writeOpts( opts );
+        return opts;
+    }
+
+    public static function createFileSystemOpts( path : String ) : Array<String> {
+        var opts = new Array<String>();
+        for( f in FileSystem.readDirectory( path ) )
+            opts.push(  FileSystem.isDirectory( '$path/$f' ) ? '$f/' : f );
+        return opts;
+    }
 
     /*
     #if macro
