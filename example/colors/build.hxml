@@ -1,2 +1,11 @@
--x App
+-main App
+-debug
 -cp ../../src
+--each
+
+--next
+-neko app.n
+
+--next
+-js app.js
+-lib hxnodejs

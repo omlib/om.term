@@ -73,8 +73,6 @@ class ColorTool {
     public static inline function bg_bright_cyan( str : String ) return backgroundColor( str, BackgroundColor.bright_cyan );
     public static inline function bg_bright_white( str : String ) return backgroundColor( str, BackgroundColor.bright_white );
 
-    #if sys
-
     public static function isSupported() : Bool {
         if( Sys.systemName() == 'Windows' )
             return false;
@@ -85,7 +83,5 @@ class ColorTool {
             return false;
         return ~/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.match( term );
     }
-
-    #end
 
 }

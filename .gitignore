@@ -1,4 +1,5 @@
 _*
 example/*/*.n
+example/*/*.js*
 haxedoc.xml
 TODO.md
