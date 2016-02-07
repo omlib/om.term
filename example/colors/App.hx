@@ -3,6 +3,7 @@ import Sys.println;
 import om.term.ColorTool;
 
 using om.term.ColorTool;
+using om.term.StyleTool;
 
 class App {
 
@@ -52,5 +53,15 @@ class App {
 
         println( 'red-white'.red().bg_white() );
         println( 'red-white'.bg_white().red() );
+
+        println( '----------------' );
+
+        println( 'reset'.reset() );
+        println( 'bright'.bright() );
+        println( 'dim'.dim() );
+        println( 'italic'.italic() );
+        println( 'underline'.underline() );
+        println( 'blink'.blink() );
+        println( 'inverse'.inverse() );
     }
 }
