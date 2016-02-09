@@ -10,30 +10,15 @@ package om.term;
 */
 class ColorTool {
 
-    /**
-        Wraps given string with color definitions.
-    */
-    public static function color( str : String, color : Color ) : String {
-        var buf = new StringBuf();
-        buf.add( '\u001b[' );
-        buf.add( color );
-        buf.add( 'm' );
-        buf.add( str );
-        buf.add( '\u001b[39m' );
-        return buf.toString();
-    }
-
-    /**
-        Wraps given string with background color definitions.
-    */
-    public static function backgroundColor( str : String, color : BackgroundColor ) : String {
-        var buf = new StringBuf();
-        buf.add( '\u001b[' );
-        buf.add( color );
-        buf.add( 'm' );
-        buf.add( str );
-        buf.add( '\u001b[49m' );
-        return buf.toString();
+    public static function isSupported() : Bool {
+        if( Sys.systemName() == 'Windows' )
+            return false;
+        if( Sys.getEnv( 'COLORTERM' ) != null )
+            return true;
+        var term = Sys.getEnv( 'TERM' );
+        if( term == 'dumb' )
+            return false;
+        return ~/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.match( term );
     }
 
     public static inline function def( str : String ) return color( str, Color.def );
@@ -73,15 +58,30 @@ class ColorTool {
     public static inline function bg_bright_cyan( str : String ) return backgroundColor( str, BackgroundColor.bright_cyan );
     public static inline function bg_bright_white( str : String ) return backgroundColor( str, BackgroundColor.bright_white );
 
-    public static function isSupported() : Bool {
-        if( Sys.systemName() == 'Windows' )
-            return false;
-        if( Sys.getEnv( 'COLORTERM' ) != null )
-            return true;
-        var term = Sys.getEnv( 'TERM' );
-        if( term == 'dumb' )
-            return false;
-        return ~/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.match( term );
+    /**
+        Wraps given string with color definitions.
+    */
+    public static inline function color( str : String, color : Color ) : String {
+        return wrap( str, color, 39 );
+    }
+
+    /**
+        Wraps given string with background color definitions.
+    */
+    public static inline function backgroundColor( str : String, color : BackgroundColor ) : String {
+        return wrap( str, color, 49 );
+    }
+
+    static function wrap( str : String, colorCode : Int, type : Int ) : String {
+        var buf = new StringBuf();
+        buf.add( '\u001b[' );
+        buf.add( colorCode );
+        buf.add( 'm' );
+        buf.add( str );
+        buf.add( '\u001b[' );
+        buf.add( Std.string( type ) );
+        buf.add( 'm' );
+        return buf.toString();
     }
 
 }

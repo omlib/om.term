@@ -23,4 +23,10 @@ class Term {
         return false;
     }
 
+    /*
+    public static function beep() {
+        //Sys.stdout().writeString( '\x07' );
+    }
+    */
+
 }
