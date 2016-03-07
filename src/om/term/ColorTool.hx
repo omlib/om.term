@@ -1,25 +1,16 @@
 package om.term;
 
+import om.term.ANSI;
+
 /**
     Terminal output colorizing.
-    Surrounds strings with ansicolor codes.
+    Surrounds strings with ansi color codes.
 
     Usage:
         Sys.println( TermColorTool.red('abc') );
         Sys.println( 'abc'.red() );
 */
 class ColorTool {
-
-    public static function isSupported() : Bool {
-        if( Sys.systemName() == 'Windows' )
-            return false;
-        if( Sys.getEnv( 'COLORTERM' ) != null )
-            return true;
-        var term = Sys.getEnv( 'TERM' );
-        if( term == 'dumb' )
-            return false;
-        return ~/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.match( term );
-    }
 
     public static inline function def( str : String ) return color( str, Color.def );
     public static inline function black( str : String ) return color( str, Color.black );

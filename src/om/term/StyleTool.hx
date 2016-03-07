@@ -1,5 +1,7 @@
 package om.term;
 
+import om.term.ANSI;
+
 /**
     http://www.termsys.demon.co.uk/vtansi.htm#colors
 
