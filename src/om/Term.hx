@@ -1,5 +1,8 @@
 package om;
 
+import om.term.ANSI;
+
+@:require(sys)
 class Term {
 
     /**
@@ -23,10 +26,23 @@ class Term {
         return false;
     }
 
-    /*
-    public static function beep() {
-        //Sys.stdout().writeString( '\x07' );
+    public static inline function beep() {
+        Sys.stdout().writeString( ANSI.BELL );
     }
-    */
+
+    public static function clearLine() {
+        Sys.stdout().writeString( '\x07' );
+    }
+
+    public static function setTitle( text : String ) {
+        Sys.stdout().writeString( ANSI.title( text ) );
+    }
+
+    public static function columns() : Int {
+        var n = Sys.getEnv( 'COLUMNS' );
+        if( n == null )
+            return null;
+        return Std.parseInt(n);
+    }
 
 }

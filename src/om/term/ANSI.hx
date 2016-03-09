@@ -65,6 +65,8 @@ class ANSI {
     public static inline var CSI = '$ESCAPE[';
     public static inline var BELL = '\x07';
 
+	#if sys
+
     public static function isSupported() : Bool {
         if( Sys.systemName() == 'Windows' )
             return false;
@@ -75,6 +77,8 @@ class ANSI {
             return false;
         return ~/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.match( term );
     }
+
+	#end
 
     /*
     @:ansi
@@ -101,8 +105,6 @@ class ANSI {
         return null;
     }
 }
-
-
 
 /*
 abstract ANSI(String) from String to String {
