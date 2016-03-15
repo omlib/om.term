@@ -106,33 +106,27 @@ class Term {
 	/// --- Style
 
 	public inline function bold() : Term {
-		print( CSI+''+1+'m' );
-		return this;
+		return print( CSI+''+1+'m' );
 	}
 
 	public inline function faint() : Term {
-		print( CSI+''+Style.faint+'m' );
-		return this;
+		return print( CSI+''+Style.faint+'m' );
 	}
 
 	public inline function italic() : Term {
-		print( CSI+''+Style.italic+'m' );
-		return this;
+		return print( CSI+''+Style.italic+'m' );
 	}
 
 	public inline function underline() : Term {
-		print( CSI+''+Style.underline+'m' );
-		return this;
+		return print( CSI+''+Style.underline+'m' );
 	}
 
 	public inline function reverse() : Term {
-		print( CSI+''+Style.reverse+'m' );
-		return this;
+		return print( CSI+''+Style.reverse+'m' );
 	}
 
 	public inline function conceal() : Term {
-		print( CSI+''+Style.conceal+'m' );
-		return this;
+		return print( CSI+''+Style.conceal+'m' );
 	}
 
 	public inline function crossed() : Term {
