@@ -1,5 +1,45 @@
 package om.term;
 
+@:enum abstract Control(String) from String to String {
+	var up = "A";
+	var down = "B";
+	var forward = "C";
+	var back = "D";
+	var nextLine = "E";
+	var previousLine = "F";
+	var horizontalAbsolute = "G";
+	var eraseData = "J";
+	var eraseLine = "L";
+	var scrollUp = "S";
+	var scrollDown = "T";
+	var savePosition = "s";
+	var restorePosition = "u";
+	var queryPosition = "6n";
+	//var hide = "?25l";
+	//var show = "?25h";
+}
+
+@:enum abstract Color(Int) from Int to Int {
+
+    var black = 30;
+    var red = 31;
+    var green = 32;
+    var yellow = 33;
+    var blue = 34;
+    var magenta = 35;
+    var cyan = 36;
+    var white = 37;
+
+    var bright_black = 90;
+    var bright_red = 91;
+    var bright_green = 92;
+    var bright_yellow = 93;
+    var bright_blue = 94;
+    var bright_magenta = 95;
+    var bright_cyan = 96;
+    var bright_white = 97;
+}
+
 @:enum abstract BackgroundColor(Int) from Int to Int {
 
     var black = 40;
@@ -21,32 +61,23 @@ package om.term;
     var bright_white = 107;
 }
 
-@:enum abstract Color(Int) from Int to Int {
-
-    var def = 39;
-
-    var black = 30;
-    var red = 31;
-    var green = 32;
-    var yellow = 33;
-    var blue = 34;
-    var magenta = 35;
-    var cyan = 36;
-    var white = 37;
-    //var Gray = 37;
-
-    var dark_grey = 90;
-
-    var bright_black = 90;
-    var bright_red = 91;
-    var bright_green = 92;
-    var bright_yellow = 93;
-    var bright_blue = 94;
-    var bright_magenta = 95;
-    var bright_cyan = 96;
-    var bright_white = 97;
+/**
+	SGR (Select Graphic Rendition)
+*/
+@:enum abstract Style(Int) from Int to Int {
+	var bold = 1;
+	var faint = 2;
+	var italic = 3;
+	var underline = 4;
+	var blink_slow = 5;
+	var blink_rapid = 6;
+	var reverse = 7;
+	var conceal = 8;
+	var crossed_out = 9;
+	//...
 }
 
+/*
 class Style {
     public static var reset = [0,22];
     public static var bright = [1,22];
@@ -56,36 +87,20 @@ class Style {
     public static var blink = [5,25];
     public static var inverse = [7,27];
 }
+*/
 
 class ANSI {
 
-    public static inline var ESCAPE = '\x1B';
-    public static inline var PREFIX = '\x1b[';
-    public static inline var SUFFIX = 'm'; // Colors only
-    public static inline var CSI = '$ESCAPE[';
-    public static inline var BELL = '\x07';
+	public static inline var ESCAPE = '\x1B';
+    public static inline var CSI = ESCAPE + '[';
+	public static inline var SUFFIX = 'm'; // Colors only
 
-	#if sys
+	public static inline var BELL = '\x07';
 
-    public static function isSupported() : Bool {
-        if( Sys.systemName() == 'Windows' )
-            return false;
-        if( Sys.getEnv( 'COLORTERM' ) != null )
-            return true;
-        var term = Sys.getEnv( 'TERM' );
-        if( term == 'dumb' )
-            return false;
-        return ~/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.match( term );
-    }
-
-	#end
-
-    /*
-    @:ansi
-	public static inline function title( text : String ) : String {
-		return '$ESCAPE]0;$text$BELL';
+	public static function color( str : String, color : Color, resetColor = 39 ) : String {
+		//return CSI + color + 'm' + str + CSI + resetColor + 'm';
+		return CSI + color + 'm';
 	}
-    */
 
     /*
     public static var REGEXP_ESCAPE_CODE(default,null) =
@@ -97,20 +112,18 @@ class ANSI {
         #end;
         */
 
-    public static function parse( str : String ) {
-        trace(str);
-        for( i in 0...str.length ) {
-            trace(str.charAt(i) +" : "+ str.charCodeAt(i));
-        }
-        return null;
-    }
-}
+	#if sys
 
-/*
-abstract ANSI(String) from String to String {
-    public inline function new( s : String ) {
-        this = s;
-    }
-}
+	public static function isSupported() : Bool {
+	    if( Sys.systemName() == 'Windows' )
+	        return false;
+	    if( Sys.getEnv( 'COLORTERM' ) != null )
+	        return true;
+	    var term = Sys.getEnv( 'TERM' );
+	    if( term == 'dumb' )
+	        return false;
+	    return ~/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.match( term );
+	}
 
-*/
+	#end
+}
