@@ -94,23 +94,39 @@ class ANSI {
 	public static inline var ESCAPE = '\x1B';
     public static inline var CSI = ESCAPE + '[';
 	public static inline var SUFFIX = 'm'; // Colors only
-
 	public static inline var BELL = '\x07';
 
-	public static function color( str : String, color : Color, resetColor = 39 ) : String {
-		//return CSI + color + 'm' + str + CSI + resetColor + 'm';
-		return CSI + color + 'm';
+	public static inline function black( str : String ) return colorize( str, Color.black );
+    public static inline function red( str : String ) return colorize( str, Color.red );
+    public static inline function green( str : String ) return colorize( str, Color.green );
+    public static inline function yellow( str : String ) return colorize( str, Color.yellow );
+    public static inline function blue( str : String ) return colorize( str, Color.blue );
+    public static inline function magenta( str : String ) return colorize( str, Color.magenta );
+    public static inline function cyan( str : String ) return colorize( str, Color.cyan );
+    public static inline function white( str : String ) return colorize( str, Color.white );
+
+	public static inline function bg_black( str : String ) return colorizeBackground( str, BackgroundColor.black );
+    public static inline function bg_red( str : String ) return colorizeBackground( str, BackgroundColor.red );
+    public static inline function bg_green( str : String ) return colorizeBackground( str, BackgroundColor.green );
+    public static inline function bg_yellow( str : String ) return colorizeBackground( str, BackgroundColor.yellow );
+    public static inline function bg_blue( str : String ) return colorizeBackground( str, BackgroundColor.blue );
+    public static inline function bg_magenta( str : String ) return colorizeBackground( str, BackgroundColor.magenta );
+    public static inline function bg_cyan( str : String ) return colorizeBackground( str, BackgroundColor.cyan );
+    public static inline function bg_white( str : String ) return colorizeBackground( str, BackgroundColor.white );
+
+	public static inline function colorize( str : String, color : Color, resetCode = 39 ) : String {
+		return wrapColor( str, color, resetCode );
 	}
 
-    /*
-    public static var REGEXP_ESCAPE_CODE(default,null) =
-        #if js
-        ~/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g
-        #else
-        //TODO Regexp compilation error : PCRE does not support \L, \l, \N{name}, \U, or \u
-        ~/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g
-        #end;
-        */
+	public static inline function colorizeBackground( str : String, color : BackgroundColor, resetCode = 49 ) : String {
+		return wrapColor( str, color, resetCode );
+	}
+
+	public static function wrapColor( str : String, color : Int, ?resetCode : Int ) : String {
+		var s = CSI + color + 'm' + str ;
+		if( resetCode != null ) s += CSI + resetCode + 'm';
+		return s;
+	}
 
 	#if sys
 
