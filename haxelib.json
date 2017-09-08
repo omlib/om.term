@@ -1,14 +1,14 @@
 {
     "name": "om.term",
-    "version": "0.1.0",
+    "version": "0.0.0",
     "description": "Terminal tools",
-    "tags": ["term"],
+    "tags": ["om","term"],
     "url": "https://github.com/tong/om.term",
-    "license": "GPL",
+    "license": "OM",
     "contributors": ["tong"],
     "releasenote": "See CHANGELOG.md",
     "classPath" : "src/",
     "dependencies": {
-		"om.core":""
+		"om.core": ""
 	}
 }
