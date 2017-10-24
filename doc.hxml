@@ -1,9 +1,29 @@
 --no-output
 -lib om.term
 om.Term
-om.term.ANSI
-om.term.Options
+-dce no
+-D doc-gen
 --each
+
+--next
+-cpp _
+-xml doc/cpp.xml
+
+--next
+-cs _
+-xml doc/cs.xml
+
+--next
+-hl _
+-xml doc/hl.xml
+
+--next
+-java _
+-xml doc/java.xml
+
+--next
+-lua _
+-xml doc/lua.xml
 
 --next
 -neko _
@@ -11,8 +31,12 @@ om.term.Options
 
 --next
 -js _
--xml doc/nodejs.xml
+-xml doc/node.xml
 -lib hxnodejs
+
+--next
+-php _
+-xml doc/php.xml
 
 --next
 -python _

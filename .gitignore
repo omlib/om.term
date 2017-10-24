@@ -1,5 +1,4 @@
-_*
-data/
-doc/
+doc/*.xml
 example/**/app*
-test/unit*
+test/bin/
+_*

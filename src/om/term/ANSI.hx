@@ -89,13 +89,37 @@ class Style {
 }
 */
 
+/**
+	ANSI escape sequences for in-band signaling to control the cursor location, color, and other options on video text terminals.
+*/
 class ANSI {
 
-	public static inline var ESCAPE = '\x1B';
     public static inline var CSI = ESCAPE + '[';
-	public static inline var SUFFIX = 'm'; // Colors only
-	public static inline var BELL = '\x07';
+	public static inline var SUFFIX = 'm';
 
+	public static inline var BELL = '\x07';
+	public static inline var ESCAPE = '\x1B';
+
+	public static inline function csi( str : String ) : String {
+		return CSI + str;
+	}
+
+	#if (sys||nodejs)
+
+	public static function isSupported() : Bool {
+	    if( Sys.systemName() == 'Windows' )
+	        return false;
+	    if( Sys.getEnv( 'COLORTERM' ) != null )
+	        return true;
+	    var term = Sys.getEnv( 'TERM' );
+	    if( term == 'dumb' )
+	        return false;
+	    return ~/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.match( term );
+	}
+
+	#end
+
+	/*
 	public static inline function black( str : String ) return colorize( str, Color.black );
     public static inline function red( str : String ) return colorize( str, Color.red );
     public static inline function green( str : String ) return colorize( str, Color.green );
@@ -127,19 +151,6 @@ class ANSI {
 		if( resetCode != null ) s += CSI + resetCode + 'm';
 		return s;
 	}
+	*/
 
-	#if sys
-
-	public static function isSupported() : Bool {
-	    if( Sys.systemName() == 'Windows' )
-	        return false;
-	    if( Sys.getEnv( 'COLORTERM' ) != null )
-	        return true;
-	    var term = Sys.getEnv( 'TERM' );
-	    if( term == 'dumb' )
-	        return false;
-	    return ~/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.match( term );
-	}
-
-	#end
 }
