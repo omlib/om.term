@@ -1,4 +1,6 @@
-doc/*.xml
-example/**/app*
-test/bin/
 _*
+doc/
+example/**/app*
+example/**/bin/
+script/
+test/bin/
