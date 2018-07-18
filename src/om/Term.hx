@@ -8,7 +8,6 @@ import om.ANSI.CSI;
 //typedef Control = om.ANSI.Control;
 //typedef Style = om.ANSI.Style;
 
-@:require(sys)
 class Term {
 
     public static inline function print( v : Dynamic ) {

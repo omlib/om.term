@@ -2,7 +2,7 @@ package om.term;
 
 class Column {
 
-    public static function create( data : Array<Dynamic>, filters : Array<String>, indent = 1, ?minWidth : Int, ?maxWidth : Int ) : String {
+    public static function create( data : Array<Dynamic>, filters : Array<String>, indent : Null<Int> = 1, ?minWidth : Int, ?maxWidth : Int ) : String {
 
         var rows = new Array<Array<String>>();
         var widths = [for(i in 0...filters.length) 0]; // column widths

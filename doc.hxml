@@ -1,6 +1,8 @@
 --no-output
 -lib om.term
+om.ANSI
 om.Term
+--macro include("om.term")
 -dce no
 -D doc-gen
 --each
@@ -16,6 +18,10 @@ om.Term
 --next
 -hl _
 -xml doc/hl.xml
+
+--next
+--interp
+-xml doc/interp.xml
 
 --next
 -java _
