@@ -1,4 +1,9 @@
 
 # OM.TERM
 
-> Terminal tools.
+> Terminal tools
+
+
+## Usage
+
+See [examples/](examples/)
