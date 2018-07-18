@@ -7,8 +7,7 @@ using haxe.macro.ExprTools;
 using haxe.macro.Tools;
 #end
 
-@:keep
-@:enum abstract Color(Int) to Int {
+enum abstract Color(Int) to Int {
 
     var black = 30;
     var red = 31;
@@ -31,7 +30,7 @@ using haxe.macro.Tools;
     var bright_white = 97;
 }
 
-@:enum abstract BackgroundColor(Int) to Int {
+enum abstract BackgroundColor(Int) to Int {
 
     var black = 40;
     var red = 41;
@@ -57,7 +56,7 @@ using haxe.macro.Tools;
 /**
 	SGR (Select Graphic Rendition)
 */
-@:enum abstract Style(Int) to Int {
+enum abstract Style(Int) to Int {
 	var bright = 1;
 	var dim = 2;
 	var italic = 3;
@@ -74,7 +73,7 @@ using haxe.macro.Tools;
 	var inverse_off = 27;
 }
 
-@:enum abstract Control(String) to String {
+enum abstract Control(String) to String {
 	var cursorUp = "A";
 	var cursorDown = "B";
 	var cursorForward = "C";
