@@ -9,6 +9,7 @@
     "releasenote": "See CHANGELOG.md",
     "classPath" : "src/",
     "dependencies": {
-		"om.core": ""
+		"om.core": "",
+		"om.ansi": ""
 	}
 }
