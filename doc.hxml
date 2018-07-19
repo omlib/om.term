@@ -1,6 +1,5 @@
 --no-output
 -lib om.term
-om.ANSI
 om.Term
 --macro include("om.term")
 -dce no
