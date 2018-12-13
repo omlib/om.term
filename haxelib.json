@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "description": "Terminal tools",
     "tags": ["om","term"],
-    "url": "https://github.com/tong/om.term",
+    "url": "https://github.com/omlib/om.term",
     "license": "OM",
     "contributors": ["tong"],
     "releasenote": "See CHANGELOG.md",
