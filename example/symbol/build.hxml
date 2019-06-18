@@ -1,0 +1,13 @@
+-main App
+-lib om.term
+-dce full
+-debug
+-D eval-stack
+--each
+
+#--next
+#-js app.js
+#-lib hxnodejs
+
+--next
+-neko app.n

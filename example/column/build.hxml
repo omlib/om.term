@@ -1,0 +1,11 @@
+-main App
+-lib om.term
+-debug
+--each
+
+--next
+-neko app.n
+
+#--next
+#-js app.js
+#-lib hxnodejs
