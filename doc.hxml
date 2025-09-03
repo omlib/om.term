@@ -10,9 +10,6 @@ om.Term
 -cpp _
 -xml doc/cpp.xml
 
---next
--cs _
--xml doc/cs.xml
 
 --next
 -hl _
@@ -23,8 +20,8 @@ om.Term
 -xml doc/interp.xml
 
 --next
--java _
--xml doc/java.xml
+--jvm _
+-xml doc/jvm.xml
 
 --next
 -lua _
