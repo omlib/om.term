@@ -1,15 +1,20 @@
 {
-    "name": "om.term",
-    "version": "0.0.0",
-    "description": "Terminal tools",
-    "tags": ["om","term"],
-    "url": "https://github.com/omlib/om.term",
-    "license": "OM",
-    "contributors": ["tong"],
-    "releasenote": "See CHANGELOG.md",
-    "classPath" : "src/",
-    "dependencies": {
-		"om.core": "",
-		"om.ansi": ""
-	}
+  "name": "om.term",
+  "version": "0.0.0",
+  "description": "Terminal tools",
+  "tags": [
+    "om",
+    "term"
+  ],
+  "url": "https://github.com/omlib/om.term",
+  "license": "Public",
+  "contributors": [
+    "tong"
+  ],
+  "releasenote": "See CHANGELOG.md",
+  "classPath": "src/",
+  "dependencies": {
+    "om.core": "",
+    "om.ansi": ""
+  }
 }
